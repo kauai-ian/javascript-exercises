@@ -5,6 +5,7 @@ const leapYears = function (years) {
   // Also it checks against years divisable by 100 (not allowed) and 400 (is allowed).
   // The output is a list of leap years
   if (years % 4 === 0 && (years % 100 !== 0 || years % 400 === 0)) {
+    console.log(true);
     return true;
   } else {
     return false;
