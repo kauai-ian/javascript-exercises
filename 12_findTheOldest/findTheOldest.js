@@ -1,16 +1,27 @@
 const findTheOldest = function (people) {
-  let oldest = people[0];
-
-  people.filter((person) => {
-    if (
-      person.yearOfDeath - person.yearOfBirth >
-      oldest.yearOfDeath - oldest.yearOfBirth
-    ) {
-      oldest = person;
+  // how to find the oldest person still alive?
+  // use the reduce function of JS.
+  // check if the person has a year of death.
+  // if no, then return oldest living
+  const getAge = function (birth, death) {
+    if (!death) {
+      death = new Date().getFullYear(); // return current year using Date()
     }
-  });
-  return oldest;
-};
+    return death - birth;
+  };
+  return people.reduce((oldest, currentPerson) => {
+    // oldestAge gets the age of the oldest person's year of death and birth
+    const oldestAge = getAge(oldest.yearOfBirth, oldest.yearOfDeath);
 
+    // currentAge gets the age of the current person's year of death and birth
+    const currentAge = getAge(
+      currentPerson.yearOfBirth,
+      currentPerson.yearOfDeath
+    );
+
+    // return name if current age is older than the oldest age, else return current oldest age
+    return oldestAge < currentAge ? currentPerson : oldest;
+  });
+};
 // Do not edit below this line
 module.exports = findTheOldest;
