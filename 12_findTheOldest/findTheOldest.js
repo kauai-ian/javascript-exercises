@@ -1,8 +1,8 @@
 const findTheOldest = function (people) {
   // how to find the oldest person still alive?
   // use the reduce function of JS.
-  // check if the person has a year of death.
-  // if no, then return oldest living
+  // calculate the age of each person.
+  // check if the person has a year of death. if no, then add todays date.
   const getAge = function (birth, death) {
     if (!death) {
       death = new Date().getFullYear(); // return current year using Date()
@@ -20,7 +20,11 @@ const findTheOldest = function (people) {
     );
 
     // return name if current age is older than the oldest age, else return current oldest age
-    return oldestAge < currentAge ? currentPerson : oldest;
+    if (oldestAge < currentAge) {
+      return currentPerson;
+    } else {
+      return oldest;
+    }
   });
 };
 // Do not edit below this line
